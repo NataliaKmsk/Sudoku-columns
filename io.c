@@ -19,15 +19,19 @@ int	is_valid(char *input)
 	int	i;
 
 	i = 0;
+	int count_chars = 0;
+	
 	while ( input[i] != '\0')
 	{
 		if (!(input[i] == ' ' || (input[i] >= '1' && input[i] <= '4')))
 		{
 			return (0);
 		}
+		if (input[i] >= '1' && input[i] <= '4')
+			count_chars++;
 		i ++;
 	}
-	if (i == 31)
+	if (count_chars == 16 && i == 31)
 	{
 		return (1);
 	}
@@ -47,7 +51,7 @@ char	**init(char *input)
 	j = 0;
 	digits = malloc(16 * sizeof(char *));
 	if (!digits)
-		write(1, "Error :couldn't allocate memory", 25);
+		write(1, "Error :couldn't allocate memory", 32);
 	while (input[i] != '\0' && j < 16)
 	{
 		if (input [i] != ' ')
